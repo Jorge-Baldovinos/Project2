@@ -1,32 +1,17 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const path = require('path');
+const router = express.Router();
+const routineController = require('../controllers/routineController');
 
-// Initialize Express app
-const app = express();
+// Route to get all routines
+router.get('/routines', routineController.getRoutines);
 
-// Middleware
-app.use(bodyParser.json());
+// Route to create a new routine
+router.post('/routines', routineController.createRoutine);
 
-// Connect to MongoDB using Mongoose
-mongoose.connect('mongodb://localhost/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+// Route to add a task to a routine
+router.post('/routines/:routineId/tasks', routineController.addTaskToRoutine);
 
-// API routes
-app.use('/api/items', require('./routes/api/items'));
+// Route to delete a routine
+router.delete('/routines/:id', routineController.deleteRoutine);
 
-// Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
-
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server started on port ${port}`));
+module.exports = router;

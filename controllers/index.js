@@ -1,44 +1,65 @@
-const Item = require('../models/Item');
+const db = require('../models'); // Import your Sequelize models
 
-// Controller for getting all items
-exports.getItems = async (req, res) => {
+// Controller for getting all routines
+exports.getRoutines = async (req, res) => {
   try {
-    const items = await Item.find();
-    res.json(items);
+    const routines = await db.Routine.findAll({ include: db.Task });
+    res.json(routines);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send('Server Error');
   }
 };
 
-// Controller for adding a new item
-exports.addItem = async (req, res) => {
-  try {
-    const newItem = new Item({
-      name: req.body.name,
-    });
+// Controller for creating a new routine
+exports.createRoutine = async (req, res) => {
+  const { name, description } = req.body;
 
-    const item = await newItem.save();
-    res.json(item);
+  try {
+    const newRoutine = await db.Routine.create({ name, description });
+    res.json(newRoutine);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send('Server Error');
   }
 };
 
-// Controller for deleting an item
-exports.deleteItem = async (req, res) => {
-  try {
-    const item = await Item.findById(req.params.id);
+// Controller for adding a task to a routine
+exports.addTaskToRoutine = async (req, res) => {
+  const { routineId, taskName, taskDescription } = req.body;
 
-    if (!item) {
-      return res.status(404).json({ msg: 'Item not found' });
+  try {
+    const routine = await db.Routine.findByPk(routineId);
+
+    if (!routine) {
+      return res.status(404).json({ msg: 'Routine not found' });
     }
 
-    await item.remove();
-    res.json({ msg: 'Item removed' });
+    const newTask = await db.Task.create({ name: taskName, description: taskDescription });
+    await routine.addTask(newTask);
+
+    res.json(newTask);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+};
+
+// Controller for deleting a routine
+exports.deleteRoutine = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const routine = await db.Routine.findByPk(id);
+
+    if (!routine) {
+      return res.status(404).json({ msg: 'Routine not found' });
+    }
+
+    await routine.destroy();
+    res.json({ msg: 'Routine deleted' });
+  } catch (err) {
+    console.error(err);
     res.status(500).send('Server Error');
   }
 };
