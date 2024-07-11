@@ -1,17 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const routineController = require('../controllers/routineController');
+// // api/index.js
+// const habitsRoutes = require('./habits');
+// const behaviorsRoutes = require('./behaviors');
 
-// Route to get all routines
-router.get('/routines', routineController.getRoutines);
-
-// Route to create a new routine
-router.post('/routines', routineController.createRoutine);
-
-// Route to add a task to a routine
-router.post('/routines/:routineId/tasks', routineController.addTaskToRoutine);
-
-// Route to delete a routine
-router.delete('/routines/:id', routineController.deleteRoutine);
-
-module.exports = router;
+// module.exports = (app) => {
+//     app.use('/api/habits', habitsRoutes);
+//     app.use('/api/behaviors', behaviorsRoutes);
+// };
