@@ -1,8 +1,7 @@
-// // api/index.js
-// const habitsRoutes = require('./habits');
-// const behaviorsRoutes = require('./behaviors');
+const apiRouter = require('express').Router();
 
-// module.exports = (app) => {
-//     app.use('/api/habits', habitsRoutes);
-//     app.use('/api/behaviors', behaviorsRoutes);
-// };
+const habitRoutes = require("./habitRoutes")
+
+apiRouter.use("/habits", habitRoutes)
+
+module.exports = apiRouter
