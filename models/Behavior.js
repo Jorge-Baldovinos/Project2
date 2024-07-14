@@ -28,7 +28,7 @@ Behavior.init(
             allowNull: false,
         },
         routine_id: {
-            types: DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'routine',
                 key: 'id',
