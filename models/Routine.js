@@ -4,7 +4,7 @@ const sequelize = require('../config/connection');
 class Routine extends Model {}
 
 Routine.init(
-    { // revisit if we want to add a starting and ending date column
+    {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -15,6 +15,13 @@ Routine.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id',
+            }
+        }
     },
     {
         sequelize,

@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS user_credentials_db;
+DROP DATABASE IF EXISTS routine_app_db;
 
-CREATE DATABASE user_credentials_db;
+CREATE DATABASE routine_app_db;
