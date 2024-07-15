@@ -6,7 +6,7 @@ class Behavior extends Model {}
 Behavior.init(
     {
         id: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
@@ -40,6 +40,7 @@ Behavior.init(
         freezeTableName: true,
         underscored: true,
         modelName: 'behavior',
+        
     }
 );
 
