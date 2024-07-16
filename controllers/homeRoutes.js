@@ -3,7 +3,7 @@ router.get('/', async (req, res) => {
     try {
     
   
-      res.render('profile');
+      res.render('homepage');
     } catch (err) {
       res.status(500).json(err);
     }
@@ -15,6 +15,16 @@ router.get('/', async (req, res) => {
       
     
         res.render('login');
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    });
+
+    router.get('/signUp', async (req, res) => {
+      try {
+      
+    
+        res.render('signUp');
       } catch (err) {
         res.status(500).json(err);
       }

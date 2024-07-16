@@ -8,7 +8,24 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
 </head>
 <body>
-    {{{body}}}
+    <header>
+        <nav>
+            {{#if logged_in}}
+            <a href="/profile">profile</a> |
+            <button class="no-button" id="logout">logout</button>
+            {{else}}
+            <a href="/login">login</a>
+            {{/if}}
+            <a>How it works</a>
+        </nav>
+    </header>
+    <main>
+        {{{body}}}
+    </main>
+
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 </body>
 
 </html>
