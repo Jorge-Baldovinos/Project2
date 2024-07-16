@@ -1,6 +1,6 @@
 const apiRouter = require('express').Router();
 
-const habitRoutes = require("./habitRoutes")
+const habitRoutes = require("./routineRoutes")
 
 apiRouter.use("/habits", habitRoutes)
 

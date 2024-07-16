@@ -1,4 +1,4 @@
-# Name Holder
+# Routine Optimizer
 The webapp will help the user be able to track/record their habits and be able to use the information to maintain a balanced lifestyle!
 ## Description
 The user will be able to track and record their habits! This will help will productivity levels, healthier life habits, better decision making, etc! The user will be prompted to sign in where their information , if previously used, will be stored. Then they will have the option to be able to record and put down what they have done and the web app will simply track it for you and show you the habits being made!
@@ -6,7 +6,7 @@ The user will be able to track and record their habits! This will help will prod
 
  
 - What was your motivation?
-  1. place holder for  now 
+  1.  The motivation behind this project is to provide users with a tool to track their habits and improve their overall lifestyle.
 
 
 ## Project Requirements
