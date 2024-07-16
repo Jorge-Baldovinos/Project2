@@ -2,7 +2,6 @@ const { Behavior } = require('../models');
 
 const behaviorData = [
     {
-        id: 1,
         name: 'drink a glass of water',
         description: 'I will have a glass of water with lemon as soon as I wake up.',
         starting_date: 'June 11, 2024 22:00:00',
