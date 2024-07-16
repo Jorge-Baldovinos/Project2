@@ -1,24 +1,23 @@
 const User = require('./User');
 const Routine = require('./Routine');
 const Behavior = require('./Behavior');
-const Habit = require('./Habit');
 
-//Routines have many behaviors
+User.hasMany(Routine, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+Routine.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
 Routine.hasMany(Behavior, {
-
+    foreignKey: 'routine_id',
+    onDelete: 'CASCADE'
 });
 
-//behaviors are found in a routine
 Behavior.belongsTo(Routine, {
-
+    foreignKey: 'routine_id'
 });
 
-Habit.hasMany(Behavior, {
-
-});
-
-Behavior.belongsTo(Habit, {
-
-});
-
-module.exports = { User, Routine, Behavior, Habit };
+module.exports = { User, Routine, Behavior };
