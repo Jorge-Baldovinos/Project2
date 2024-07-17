@@ -6,5 +6,5 @@ const withAuth = (req, res, next) => {
       next();
     }
   };
-  
+  // exports withAuth as a module
   module.exports = withAuth;
