@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Routine Optimizer!</title>
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
 
 <body>
@@ -16,11 +17,13 @@
             {{else}}
             <a href="/login">login</a>
             {{/if}}
+            <input id="bmenub" type="checkbox" class="show">
+            <label for="bmenub" class="burger pseudo button">menu</label>
             <a>How it works</a>
         </nav>
     </header>
     <main>
-        {{{body}}}
+        {{{ body }}}
     </main>
 
     {{#if logged_in}}
