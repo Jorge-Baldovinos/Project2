@@ -1,0 +1,11 @@
+body {
+    background-color: #D1A58A;
+}
+
+button.btn.btn-primary {
+    background: #183A53;
+}
+
+button.btn.btn-secondary {
+    background: #5C97B8;
+}
