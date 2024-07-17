@@ -53,9 +53,9 @@ The user will be able to track and record their habits! This will help will prod
 * Have a professional README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
 
-## Screenshots
 
-To see the project on the browser visit 
+
+To see the project on the browser visit localhost:3001
 
 
 ## Authors
@@ -74,9 +74,23 @@ MIT License
 Inspiration/Help/Credit
 
 APIs Used:
-* 
-* 
-* 
+Sequelize ORM
+PostgreSQL (pg)
+Dotenv
+Connect-session-sequelize
+
 
 Libraries Used:
-* 
+ Handlebars.js (express-handlebars)
+Moment.js
+Lodash
+Validator
+UUID
+Bcrypt
+Inflection
+Moment-timezone
+Retry-as-promised
+Semver
+Sequelize-pool
+Undici-types
+Wkx

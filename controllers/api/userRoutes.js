@@ -1,37 +1,71 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const newUser = await User.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
+    const userData = await User.create(req.body);
 
-    res.status(200).json(newUser);
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
+    });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
-    const projectData = await User.destroy({
+    const userData = await User.findOne({
       where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
+        email: req.body.email,
       },
     });
 
+    console.log(userData);
+
     if (!userData) {
-      res.status(404).json({ message: 'No user found with this id!' });
+      console.log('no user data');
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
-    res.status(200).json(userData);
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    console.log(validPassword);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      /* req.session.user_id = userData.id; */
+      req.session.logged_in = true;
+      res
+        .status(200)
+        .json({ user: userData, message: 'You are now logged in!' });
+    });
+
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
 });
 

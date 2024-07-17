@@ -1,4 +1,4 @@
-// Import required modules
+/* // Import required modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const dataRoutes = require('./routes/dataRoutes');
@@ -40,4 +40,4 @@ router.post('/routines', (req, res) => {
   res.json({ message: 'New routine added successfully' });
 });
 
-module.exports = router;
+module.exports = router; */
